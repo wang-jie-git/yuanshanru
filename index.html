@@ -564,7 +564,7 @@
     var contact = document.getElementById('f-contact').value || '（未填）';
     var msg = document.getElementById('f-msg').value || '（无补充）';
     var body = '身份：' + role + '\n称呼/店名：' + name + '\n联系方式：' + contact + '\n想说：' + msg;
-    var subject = '官网预约 · ' + role + ' · ' + name;
+    var subject = '远山如官网预约 · ' + role + ' · ' + name;
     window.location.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   });
 </script>
