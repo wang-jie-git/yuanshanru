@@ -1,0 +1,573 @@
+<!doctype html>
+<!-- 审美判断力 · 官网（v1.0 · 分角色门户）
+ 设计读：B2B 招商门户 + 消费信任页，宋韵品牌资产（宣纸白/黛青/朱砂），专业可信 + 高级克制。
+ 原生 CSS 静态单文件，本地开箱即用（双击打开）；无构建链，将来可整体部署到域名。 -->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>审美判断力 · 让乡镇服装店靠"懂顾客"活下来</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper: #faf9f6;
+    --paper-2: #f2efe9;
+    --ink: #1d232b;
+    --ink-2: #4a5462;
+    --ink-3: #7a8494;
+    --line: #dcd7cd;
+    --indigo: #243447;
+    --indigo-2: #33465f;
+    --cinnabar: #c23b2a;
+    --cinnabar-hi: #d94a36;
+    --gold: #a9802f;
+    --radius: 14px;
+    --shadow: 0 10px 40px rgba(36,52,71,.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14181e;
+      --paper-2: #1b212a;
+      --ink: #e8e4da;
+      --ink-2: #b6bcc6;
+      --ink-3: #87919f;
+      --line: #2c3542;
+      --indigo: #2c3f57;
+      --indigo-2: #3a5069;
+      --cinnabar: #e2533d;
+      --cinnabar-hi: #ef6a52;
+      --gold: #d3a44a;
+      --shadow: 0 10px 40px rgba(0,0,0,.45);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
+    background: var(--paper); color: var(--ink);
+    line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--paper) 82%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+  .brand-mark {
+    width: 26px; height: 26px; border-radius: 8px; flex: none;
+    background: linear-gradient(135deg, var(--indigo), var(--indigo-2));
+    display: grid; place-items: center; color: var(--paper); font-size: 13px;
+  }
+  .nav-links { display: flex; gap: 4px; margin-left: auto; }
+  .nav-links a {
+    color: var(--ink-2); text-decoration: none; font-size: 14px; font-weight: 500;
+    padding: 8px 12px; border-radius: 9px; transition: background .18s, color .18s;
+  }
+  .nav-links a:hover { background: var(--paper-2); color: var(--ink); }
+  .nav-cta {
+    margin-left: 8px; flex: none;
+    background: var(--cinnabar); color: #fff !important; font-weight: 600;
+    padding: 8px 16px; border-radius: 999px;
+  }
+  .nav-cta:hover { background: var(--cinnabar-hi); }
+  @media (max-width: 780px) { .nav-links a { font-size: 13px; padding: 6px 8px; } .brand { font-size: 15px; } nav .wrap { gap: 14px; } }
+
+  /* ── Hero ── */
+  header.hero { padding: 72px 0 56px; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+  .eyebrow {
+    display: inline-block; font-size: 13px; letter-spacing: .08em; color: var(--cinnabar);
+    font-weight: 600; margin-bottom: 18px;
+  }
+  h1 { font-size: clamp(34px, 5.2vw, 58px); line-height: 1.08; letter-spacing: -.02em; font-weight: 700; max-width: 14em; }
+  h1 em { font-style: normal; color: var(--cinnabar); }
+  .hero-sub { margin-top: 22px; font-size: 17px; color: var(--ink-2); max-width: 34em; }
+  .hero-cta { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block; background: var(--cinnabar); color: #fff; font-weight: 600;
+    padding: 13px 26px; border-radius: 999px; text-decoration: none; font-size: 15px;
+    transition: transform .15s, background .18s; box-shadow: 0 4px 18px rgba(194,59,42,.28);
+  }
+  .btn-primary:hover { background: var(--cinnabar-hi); }
+  .btn-primary:active { transform: scale(.98); }
+  .btn-ghost {
+    display: inline-block; color: var(--ink); text-decoration: none; font-weight: 600;
+    padding: 13px 26px; border-radius: 999px; font-size: 15px;
+    border: 1px solid var(--line); transition: background .18s;
+  }
+  .btn-ghost:hover { background: var(--paper-2); }
+
+  .hero-card {
+    background: var(--indigo); color: #eef0f3; border-radius: var(--radius);
+    padding: 26px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+  }
+  .hero-card::after {
+    content: ""; position: absolute; right: -40px; top: -40px; width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(255,255,255,.10), transparent 70%); pointer-events: none;
+  }
+  .hero-card .tag { font-size: 12px; color: #9fb0c4; letter-spacing: .06em; margin-bottom: 12px; }
+  .hero-card h3 { font-size: 18px; margin-bottom: 10px; }
+  .hero-card .card-line { font-size: 13.5px; color: #c6d0dc; border-top: 1px solid rgba(255,255,255,.12); padding-top: 10px; margin-top: 10px; }
+  .hero-card .badge { display: inline-block; background: var(--cinnabar); color: #fff; font-size: 12px; padding: 2px 10px; border-radius: 999px; margin-bottom: 10px; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } header.hero { padding: 48px 0 40px; } }
+
+  /* ── 案例展示区 ── */
+  .case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .case-card {
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 0;
+    background: var(--paper); overflow: hidden; transition: box-shadow .2s;
+  }
+  .case-card:hover { box-shadow: var(--shadow); }
+  .case-card .case-head {
+    background: var(--indigo); color: #eef0f3; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .case-card .case-name { font-size: 16px; font-weight: 700; }
+  .case-card .case-tag { font-size: 12px; color: #9fb0c4; }
+  .case-card .case-body { padding: 20px 22px; }
+  .case-card .case-row { display: flex; gap: 14px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px; }
+  .case-card .case-row:first-child { border-top: 0; }
+  .case-card .case-lbl { color: var(--ink-3); flex: none; width: 4.5em; }
+  .case-card .case-val { color: var(--ink); font-weight: 600; flex: 1; }
+  .case-card .case-val .chip {
+    display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px;
+    margin-right: 5px; background: var(--paper-2); color: var(--ink-2);
+  }
+  .case-card .palette { display: flex; gap: 6px; margin-top: 6px; }
+  .case-card .swatch { width: 28px; height: 28px; border-radius: 8px; border: 1px solid var(--line); }
+  @media (max-width: 780px) { .case-grid { grid-template-columns: 1fr; } }
+
+  /* ── FAQ ── */
+  .faq-list { max-width: 760px; }
+  .faq-item { border-bottom: 1px solid var(--line); padding: 18px 0; }
+  .faq-item summary { font-size: 16px; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; font-size: 20px; color: var(--cinnabar); flex: none; }
+  .faq-item[open] summary::after { content: "−"; }
+  .faq-item .faq-a { margin-top: 10px; font-size: 14.5px; color: var(--ink-2); line-height: 1.7; }
+
+  /* ── 预约表单 ── */
+  .form-card { max-width: 560px; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; background: var(--paper-2); }
+  .form-card .field { margin-bottom: 16px; }
+  .form-card label { display: block; font-size: 13.5px; font-weight: 600; color: var(--ink-2); margin-bottom: 5px; }
+  .form-card input, .form-card select, .form-card textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--paper); color: var(--ink); font-size: 14px; font-family: inherit;
+  }
+  .form-card input:focus, .form-card select:focus, .form-card textarea:focus { outline: none; border-color: var(--cinnabar); }
+  .form-card textarea { resize: vertical; min-height: 72px; }
+
+  /* ── 数据带 ── */
+  .data-band { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 40px 0; }
+  .data-band .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .data-item { text-align: left; }
+  .data-item .num { font-size: 34px; font-weight: 700; color: var(--cinnabar); letter-spacing: -.01em; }
+  .data-item .lbl { font-size: 13.5px; color: var(--ink-2); margin-top: 4px; max-width: 20em; }
+  .data-item .flip { display: block; margin-top: 8px; font-size: 13px; color: var(--gold); font-weight: 600; }
+  @media (max-width: 780px) { .data-band .wrap { grid-template-columns: 1fr; gap: 18px; } }
+
+  /* ── 通用 section ── */
+  section { padding: 72px 0; }
+  .sec-head { max-width: 720px; margin-bottom: 40px; }
+  .sec-head .eyebrow { margin-bottom: 10px; }
+  .sec-head h2 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; letter-spacing: -.015em; line-height: 1.15; }
+  .sec-head p { margin-top: 12px; color: var(--ink-2); font-size: 15.5px; }
+
+  /* ── 角色矩阵 ── */
+  .role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .role-card {
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; background: var(--paper);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .role-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .role-card .role-name { font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .role-card .role-name .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .dot.c { background: var(--cinnabar); } .dot.s { background: var(--gold); } .dot.p { background: var(--indigo); } .dot.f { background: var(--cinnabar-hi); }
+  .role-card .pain { font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+  .role-card .give { font-size: 14.5px; color: var(--ink-2); margin-top: 6px; }
+  .role-card .gain { font-size: 14.5px; font-weight: 600; margin-top: 8px; color: var(--ink); }
+  @media (max-width: 780px) { .role-grid { grid-template-columns: 1fr; } }
+
+  /* ── 产品三件套 ── */
+  .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .prod-card { border-radius: var(--radius); padding: 24px; background: var(--paper-2); border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .prod-card .step { font-size: 12px; color: var(--gold); font-weight: 700; letter-spacing: .05em; }
+  .prod-card h3 { font-size: 19px; margin: 10px 0 10px; }
+  .prod-card p { font-size: 14px; color: var(--ink-2); flex: 1; }
+  .prod-card .meta { margin-top: 14px; font-size: 12.5px; color: var(--ink-3); }
+  @media (max-width: 780px) { .prod-grid { grid-template-columns: 1fr; } }
+
+  /* ── 商业模式（合伙人）── */
+  .biz { background: var(--indigo); color: #eef0f3; border-radius: var(--radius); padding: 40px; }
+  .biz .eyebrow { color: #e7a64f; }
+  .biz h2 { color: #fff; }
+  .biz .sec-head p { color: #b9c4d2; }
+  .biz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
+  .biz-tile { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 18px; }
+  .biz-tile .t { font-size: 15px; font-weight: 700; color: #fff; }
+  .biz-tile .d { font-size: 13px; color: #c6d0dc; margin-top: 6px; }
+  @media (max-width: 780px) { .biz-grid { grid-template-columns: 1fr; } .biz { padding: 28px 22px; } }
+
+  /* ── 样板店 / 加盟 ── */
+  .join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .join-col { border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .join-col h3 { font-size: 18px; margin-bottom: 8px; }
+  .join-col .sub { font-size: 13.5px; color: var(--ink-3); margin-bottom: 14px; }
+  .join-col ul { list-style: none; }
+  .join-col li { font-size: 14px; color: var(--ink-2); padding: 7px 0; border-top: 1px solid var(--line); display: flex; gap: 10px; }
+  .join-col li::before { content: "·"; color: var(--cinnabar); font-weight: 700; }
+  @media (max-width: 780px) { .join-grid { grid-template-columns: 1fr; } }
+
+  /* ── 创始人 ── */
+  .founder { display: grid; grid-template-columns: .4fr 1fr; gap: 40px; align-items: center; }
+  .founder .avatar {
+    width: 150px; height: 150px; border-radius: 50%; background: var(--indigo); color: var(--paper);
+    display: grid; place-items: center; font-size: 46px; font-weight: 700; margin: 0 auto;
+  }
+  .founder h2 { font-size: 26px; margin-bottom: 14px; }
+  .founder p { font-size: 15px; color: var(--ink-2); max-width: 46em; }
+  .founder p + p { margin-top: 10px; }
+  @media (max-width: 780px) { .founder { grid-template-columns: 1fr; text-align: center; } .founder p { margin: 0 auto; } }
+
+  /* ── CTA 终区 ── */
+  .final-cta { text-align: center; padding: 80px 0; }
+  .final-cta h2 { font-size: clamp(26px, 3.6vw, 40px); font-weight: 700; max-width: 18em; margin: 0 auto; }
+  .final-cta p { color: var(--ink-2); margin: 16px auto 28px; max-width: 34em; font-size: 15.5px; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--ink-3); }
+  footer a { color: var(--ink-3); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="brand-mark">韵</span>审美判断力</a>
+    <div class="nav-links">
+      <a href="#pain">行业</a>
+      <a href="#roles">角色</a>
+      <a href="#products">产品</a>
+      <a href="#cases">案例</a>
+      <a href="#biz">模式</a>
+      <a href="#faq">问答</a>
+      <a href="#join">加盟</a>
+      <a href="#founder">创始人</a>
+    </div>
+    <a class="nav-cta" href="#contact">预约诊断</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">服装行业 2025 · 困境即需求</span>
+        <h1>让乡镇服装店<br>靠<em>懂顾客</em>，不再靠拼价格</h1>
+        <p class="hero-sub">AI 形象诊断 + 口袋决策卡：顾客进店先建档，店员按卡推款。成交率上去，退货率下来，店活下来。</p>
+        <div class="hero-cta">
+          <a class="btn-primary" href="#contact">预约免费诊断</a>
+          <a class="btn-ghost" href="#roles">了解模式</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <span class="badge">顾客 30 秒会用</span>
+        <h3>口袋决策卡</h3>
+        <div class="card-line">① 3 色衣橱配色盘 · 任意两件都是对的</div>
+        <div class="card-line">② 版型 2 条红线 · 买外套先看肩线衣长</div>
+        <div class="card-line">③ 购物闸门 · 不疯狂地爱就不买</div>
+        <div class="card-line">④ 场景速配 · 今天这个场合怎么穿</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── 数据带 ── -->
+<div class="data-band" id="pain">
+  <div class="wrap">
+    <div class="data-item">
+      <div class="num">37%</div>
+      <div class="lbl">2025 全国实体店闭店率，每小时 28 家关灯（中国商业联合会）</div>
+      <span class="flip">↓ 而线下重新成为品牌布局的高地</span>
+    </div>
+    <div class="data-item">
+      <div class="num">80%</div>
+      <div class="lbl">服装直播退货率，女装平均 65-80%（36氪研究院）</div>
+      <span class="flip">↓ 根因：预期与实物不匹配，诊断先行可破</span>
+    </div>
+    <div class="data-item">
+      <div class="num">十有八亏</div>
+      <div class="lbl">营业中的店，被价格战、库存、退货三杀</div>
+      <span class="flip">↓ 不卖货，卖"帮顾客选对"的判断力</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── 角色矩阵 ── -->
+<section id="roles">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">一张卡，四方共赢</span>
+      <h2>每个角色，都从这张卡里得到东西</h2>
+      <p>诊断引流、决策卡推款、按成交付费。不背库存、不赌流量、不降价。</p>
+    </div>
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-name"><span class="dot c"></span>顾客</div>
+        <div class="pain">直播买错、衣柜一堆不穿、不会搭</div>
+        <div class="give">免费形象诊断：测出适合的颜色/版型/风格</div>
+        <div class="gain">一张 30 秒能用的口袋决策卡，买衣不再试错</div>
+      </div>
+      <div class="role-card">
+        <div class="role-name"><span class="dot s"></span>门店店主</div>
+        <div class="pain">客源流失、只能拼价格、库存压货</div>
+        <div class="give">进店顾客免费诊断，引流不花钱</div>
+        <div class="gain">按成交付费，退货下降，客单价上升</div>
+      </div>
+      <div class="role-card">
+        <div class="role-name"><span class="dot p"></span>合伙人</div>
+        <div class="pain">有技术没渠道，做 SaaS 没客户</div>
+        <div class="give">20 年二批渠道网络 + 真实门店场景</div>
+        <div class="gain">一起把"审美判断力"做成生意，项目制起步</div>
+      </div>
+      <div class="role-card">
+        <div class="role-name"><span class="dot f"></span>加盟商</div>
+        <div class="pain">想转型缺产品，单店难复制</div>
+        <div class="give">整套系统授权 + 标准流程 + 区域保护</div>
+        <div class="gain">区域独家经营权，按区域分润</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 产品三件套 ── -->
+<section id="products" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">三步服务流</span>
+      <h2>从诊断到复购，一个闭环</h2>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <span class="step">01 · 诊断</span>
+        <h3>形象鉴定</h3>
+        <p>顾客建档，AI 测色季、体型、骨架、风格四类型，出全绿诊断报告。低频深度服务，建立信任。</p>
+        <div class="meta">16 项工具链 · 双门禁防幻觉</div>
+      </div>
+      <div class="prod-card">
+        <span class="step">02 · 决策卡</span>
+        <h3>口袋决策卡</h3>
+        <p>把诊断压缩成顾客早上 30 秒能用的卡：配色盘、版型红线、购物闸门、场景速配。高频日常入口。</p>
+        <div class="meta">一客一卡 · 半年复查 · 版本递增</div>
+      </div>
+      <div class="prod-card">
+        <span class="step">03 · 赋能</span>
+        <h3>门店赋能包</h3>
+        <p>案头控制台进店：店主看得到每位顾客能出什么卡，按卡配货推款，按成交分佣。</p>
+        <div class="meta">带单佣金 10-20% · 不成交不付费</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 真实案例 ── -->
+<section id="cases">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">真实案例 · 已验证的两位顾客</span>
+      <h2>诊断前后，买衣这件事变了</h2>
+      <p>两位真实顾客，建档诊断后拿到决策卡。以下是脱敏展示——数据真实，隐私已处理。</p>
+    </div>
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-head">
+          <span class="case-name">林女士 · 职场通勤</span>
+          <span class="case-tag">C-0001</span>
+        </div>
+        <div class="case-body">
+          <div class="case-row"><span class="case-lbl">色季</span><span class="case-val">冬季型 · 冷色 × 深色</span></div>
+          <div class="case-row"><span class="case-lbl">体型</span><span class="case-val">梨形 · 柔和曲线型</span></div>
+          <div class="case-row"><span class="case-lbl">风格</span><span class="case-val">优雅 × 自然</span></div>
+          <div class="case-row"><span class="case-lbl">3 色衣橱</span><span class="case-val">天青 · 牙白 · 灰蓝
+            <div class="palette"><span class="swatch" style="background:#5B8FA8" title="天青"></span><span class="swatch" style="background:#F5F0E8" title="牙白"></span><span class="swatch" style="background:#8B9BAF" title="灰蓝"></span></div>
+          </span></div>
+          <div class="case-row"><span class="case-lbl">版型红线</span><span class="case-val">肩线结构感 · 高腰线拉长比例</span></div>
+          <div class="case-row"><span class="case-lbl">效果</span><span class="case-val">买前试错 5 件退 4 件 → 按卡买 3 件全留</span></div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-head">
+          <span class="case-name">陈先生 · 商场主理人</span>
+          <span class="case-tag">C-0002</span>
+        </div>
+        <div class="case-body">
+          <div class="case-row"><span class="case-lbl">色季</span><span class="case-val">秋季型 · 暖色 × 深色</span></div>
+          <div class="case-row"><span class="case-lbl">体型</span><span class="case-val">直线型 · 普通偏大骨架</span></div>
+          <div class="case-row"><span class="case-lbl">风格</span><span class="case-val">自然 × 优雅</span></div>
+          <div class="case-row"><span class="case-lbl">中性色</span><span class="case-val">可可 · 砖红 · 橄榄绿 · 驼
+            <div class="palette"><span class="swatch" style="background:#5C4033" title="可可"></span><span class="swatch" style="background:#9E3D2F" title="砖红"></span><span class="swatch" style="background:#5B6B3A" title="橄榄绿"></span><span class="swatch" style="background:#B8956A" title="驼"></span></div>
+          </span></div>
+          <div class="case-row"><span class="case-lbl">版型红线</span><span class="case-val">利落直筒 · 收腰外套 · 配饰克制</span></div>
+          <div class="case-row"><span class="case-lbl">效果</span><span class="case-val">从"黑色万能"→ 暖色提亮肤色 · 精神度+30%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 商业模式 ── -->
+<section class="biz-sec" id="biz">
+  <div class="wrap">
+    <div class="biz">
+      <div class="sec-head" style="margin-bottom:0;">
+        <span class="eyebrow">合伙人视角 · 三层变现</span>
+        <h2>不背库存，收三份钱</h2>
+        <p>诊断费 + 订阅费 + 带单佣金。风险从库存变成零库存，竞争从价格变成判断力。</p>
+      </div>
+      <div class="biz-grid">
+        <div class="biz-tile">
+          <div class="t">① 诊断服务费</div>
+          <div class="d">低频高价：建档 + 五大鉴定 + 决策卡，C 端 299-999 或 B 端打包</div>
+        </div>
+        <div class="biz-tile">
+          <div class="t">② 决策卡订阅</div>
+          <div class="d">高频低价：半年复查 / 季节更新 / 衣橱重组，月付 39-99，形象管家</div>
+        </div>
+        <div class="biz-tile">
+          <div class="t">③ 带单佣金</div>
+          <div class="d">无库存变现：决策卡推款到店成交，按 10-20% 分佣，商家退货也降</div>
+        </div>
+      </div>
+      <p style="font-size:13.5px;color:#b9c4d2;margin-top:20px;">远期：反馈信号驱动反向定制（小单快返）、双档案引擎授权品牌商场、区域消费洞察数据报告。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 样板店 / 加盟 ── -->
+<section id="join">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">先赢一次，再谈扩张</span>
+      <h2>样板店计划 + 区域加盟</h2>
+      <p>不画饼：先免费给 1 家店做诊断引流，成交了再谈分账。数据说话，再谈复制。</p>
+    </div>
+    <div class="join-grid">
+      <div class="join-col">
+        <h3>样板店（现在）</h3>
+        <div class="sub">你的店愿意试，我先免费陪跑</div>
+        <ul>
+          <li>进店顾客免费形象诊断，引流不花钱</li>
+          <li>按成交付费，不成交分文不收</li>
+          <li>配货推款 SOP，店员 1 天学会</li>
+          <li>先 3-5 个老顾客试，见效再铺开</li>
+        </ul>
+      </div>
+      <div class="join-col">
+        <h3>区域加盟（阶段 2 起）</h3>
+        <div class="sub">标准跑通后才开放，先有 SOP 再招加盟</div>
+        <ul>
+          <li>整套系统授权 + 案头控制台 + 决策卡工厂</li>
+          <li>区域独家保护，按区域分润</li>
+          <li>店主培训体系 + 陪跑支持</li>
+          <li>优先开放给样板店表现最好的店主</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 创始人 ── -->
+<section id="founder" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="founder">
+      <div class="avatar">二批</div>
+      <div>
+        <h2>20 年女装二批，见过最多的闭店</h2>
+        <p>临沂做女装批发 20 年，全国各地进货，服务乡镇县城的实体精品店，做市场杂牌货定位。</p>
+        <p>这些年看着同行一个个被电商、直播、价格战挤出去。我信的不是"卖更便宜的货"，是"帮顾客选对"。这套系统就是把这个信念，做成门店每天能用的工具。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 常见问题 ── -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">常见问题</span>
+      <h2>你想问的，这里先答</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>诊断准不准？凭什么信你？</summary><div class="faq-a">诊断基于欧美四十年验证的 AIS 体系（6 型色彩 + 身体线条 + 风格类型），不是凭感觉。系统有双门禁防幻觉：色季和色彩未定案不出卡。目前 2 位真实顾客已验证，诊断结果与照片客观色度量交叉确认一致。本土化校准正在做（L*/b* 阈值需 3 真人样本定标），定标前精度封顶"初判"。</div></details>
+      <details class="faq-item"><summary>顾客做一次诊断要多久？</summary><div class="faq-a">问卷 10 分钟 + 照片色度量 5 分钟 + 出卡 3 分钟，全程 20 分钟左右。老顾客复诊更快。照片采集需自然光（上午 9 点前或窗边顺光），这是准度的关键前提。</div></details>
+      <details class="faq-item"><summary>门店怎么收费？</summary><div class="faq-a">样板店阶段免费：我带系统上门，给进店顾客做诊断，出决策卡，按卡推你家货。成交了按 10-20% 分佣，不成交分文不收。你零成本获客加降退货。数据跑通后再谈正式合作。</div></details>
+      <details class="faq-item"><summary>这和直播带货、小红书种草有什么不同？</summary><div class="faq-a">直播赚冲动，我们赚确定性。直播退货率 80%，因为预期与实物不匹配。诊断先行 = 顾客带着"已知自己适合什么"进店，匹配更准，退货趋近个位数。我们卖的是判断力，不是货。</div></details>
+      <details class="faq-item"><summary>顾客隐私怎么保护？</summary><div class="faq-a">照片采集前需顾客书面授权（photo_consent 门禁）。诊断数据本地存储，隐私分级。将来接企业系统后，顾客可登录查看自己的决策卡，数据归顾客所有。系统不主动公开任何个人画像。</div></details>
+      <details class="faq-item"><summary>合伙人/加盟怎么谈？</summary><div class="faq-a">先项目制三个月试：你出技术/我出渠道，先跑出数据再说股权。加盟需等样板店标准跑通（阶段 2 起）才开放。优先开放给样板店表现最好的店主。不画饼，用数据说话。</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ── 预约/联系 ── -->
+<section class="final-cta" id="contact">
+  <div class="wrap">
+    <h2>你的店，愿不愿意先免费试一次？</h2>
+    <p>预约进店诊断演示，我带着系统上门。成交了再谈，不成交你什么也不损失。</p>
+    <div class="form-card">
+      <div class="field">
+        <label>你是</label>
+        <select id="f-role">
+          <option value="门店店主">门店店主（想试诊断引流）</option>
+          <option value="顾客">顾客（想给自己做诊断）</option>
+          <option value="合伙人">合伙人（想一起做）</option>
+          <option value="加盟商">加盟商（想区域合作）</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>称呼 / 店名</label>
+        <input type="text" id="f-name" placeholder="如：王姐 · 某某精品店">
+      </div>
+      <div class="field">
+        <label>微信 / 电话</label>
+        <input type="text" id="f-contact" placeholder="便于我联系你">
+      </div>
+      <div class="field">
+        <label>想说的</label>
+        <textarea id="f-msg" placeholder="你的店在哪个城市？大概什么定位？或者你有什么顾虑？"></textarea>
+      </div>
+      <button class="btn-primary" id="f-submit" style="border:none;cursor:pointer;font-family:inherit;width:100%;display:block;text-align:center;">提交预约</button>
+      <p style="font-size:12.5px;color:var(--ink-3);margin-top:12px;text-align:center;">提交后我会微信联系你，通常 24 小时内回复。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>审美判断力 · AI 个人形象管理顾问</span>
+    <span>临沂 · 面向乡镇县城精品店</span>
+  </div>
+</footer>
+
+<script>
+  // 预约表单：无后台，生成 mailto 零成本可用（将来接 NocoBase 再改 POST）
+  document.getElementById('f-submit').addEventListener('click', function() {
+    var role = document.getElementById('f-role').value;
+    var name = document.getElementById('f-name').value || '（未填）';
+    var contact = document.getElementById('f-contact').value || '（未填）';
+    var msg = document.getElementById('f-msg').value || '（无补充）';
+    var body = '身份：' + role + '\n称呼/店名：' + name + '\n联系方式：' + contact + '\n想说：' + msg;
+    var subject = '官网预约 · ' + role + ' · ' + name;
+    window.location.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+</script>
+
+</body>
+</html>
