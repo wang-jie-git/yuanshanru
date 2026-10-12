@@ -1,0 +1,5 @@
+
+# 视频素材与登录凭据（绝不进仓库）
+*.mp4
+cookies_*.txt
+video-frames/
