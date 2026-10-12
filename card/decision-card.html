@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>远山如 · 口袋决策卡（模板）</title>
+<style>
+  /* 远山如 · 口袋决策卡 v1.0（2026-10-12）
+     设计读：形象处方签——350g 特种纸质感、宋韵克制、Logo 双山成领 + 印章得体 */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Serif SC", "PingFang SC", serif;
+    background: #e8e4da; color: #1d232b; padding: 32px 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 28px;
+    max-width: 1080px; margin: 0 auto;
+  }
+  .card-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .card-label { font-size: 13px; color: #7a8494; letter-spacing: .08em; }
+
+  /* ── 卡片本体：A6 竖版 105×148mm ── */
+  .card {
+    width: 105mm; height: 148mm;
+    background: #FAF9F6; border-radius: 10px; overflow: hidden;
+    box-shadow: 0 8px 30px rgba(36,52,71,.18);
+    position: relative; padding: 0;
+    display: flex; flex-direction: column;
+  }
+  /* 纸张纹理（微噪点） */
+  .card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  /* ══════ 正面：封面 ══════ */
+  .card-front {
+    background: linear-gradient(160deg, #FAF9F6 60%, #F2EFE9);
+    padding: 22px 20px; flex: 1; display: flex; flex-direction: column; align-items: center;
+  }
+  .c-logo { margin-top: 8px; }
+  .c-brand { font-size: 24px; font-weight: 700; letter-spacing: 6px; color: #5A5A6E; margin-top: 10px; }
+  .c-line { width: 34px; height: 1.5px; background: #B5443A; margin: 12px auto 0; }
+  .c-tagline { font-size: 12px; color: #7a8494; letter-spacing: 2px; margin-top: 10px; }
+  .c-rule { flex: 1; min-height: 26px; }
+
+  .c-owner { margin-top: 18px; text-align: center; }
+  .c-owner .who { font-size: 26px; font-weight: 700; color: #1d232b; letter-spacing: 1px; }
+  .c-owner .type {
+    display: inline-block; margin-top: 8px; padding: 5px 14px;
+    background: #5A5A6E; color: #FAF9F6; font-size: 12px; letter-spacing: 3px; border-radius: 999px;
+  }
+  .c-owner .pal {
+    font-size: 12px; color: #5A5A6E; margin-top: 10px; letter-spacing: 1px;
+  }
+  .c-owner .pal .sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin: 0 2px -2px; border: 1px solid #dcd7cd; }
+
+  .c-seal-wrap { margin-top: auto; padding-bottom: 4px; }
+  .c-seal {
+    width: 46px; height: 46px; background: #B5443A; border-radius: 5px;
+    display: grid; place-items: center;
+  }
+  .c-seal span { color: #FAF9F6; font-size: 17px; letter-spacing: 2px; font-weight: 700; }
+  .c-serial { font-size: 9.5px; color: #a0a6b0; letter-spacing: 1px; margin-top: 6px; }
+
+  /* ══════ 背面：四律 ══════ */
+  .card-back { background: #FAF9F6; padding: 24px 22px; flex: 1; }
+  .b-head { display: flex; align-items: baseline; justify-content: space-between; }
+  .b-brand { font-size: 15px; font-weight: 700; color: #5A5A6E; letter-spacing: 3px; }
+  .b-no { font-size: 10px; color: #a0a6b0; letter-spacing: 1px; }
+  .b-owner { font-size: 12px; color: #7a8494; margin-top: 3px; letter-spacing: 1px; }
+  .b-rule { width: 100%; height: 1px; background: #dcd7cd; margin: 12px 0 16px; }
+
+  .law { margin-bottom: 15px; }
+  .law-t {
+    font-size: 12px; font-weight: 700; color: #1d232b; letter-spacing: 1px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .law-t .no {
+    width: 18px; height: 18px; border-radius: 50%; background: #5A5A6E; color: #FAF9F6;
+    font-size: 11px; display: grid; place-items: center; flex: none;
+  }
+  .law-d { font-size: 11.5px; color: #4a5462; margin-top: 4px; line-height: 1.6; }
+
+  .b-pal { margin-top: 4px; display: flex; gap: 8px; }
+  .b-pal .chip {
+    flex: 1; height: 34px; border-radius: 6px; border: 1px solid #dcd7cd;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  }
+  .b-pal .chip b { font-size: 11px; color: #1d232b; }
+  .b-pal .chip i { font-size: 9px; color: #7a8494; font-style: normal; }
+  .b-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+  .b-ysr { font-size: 11px; color: #5A5A6E; letter-spacing: 2px; }
+  .b-seal {
+    width: 30px; height: 30px; background: #B5443A; border-radius: 4px;
+    display: grid; place-items: center; flex: none;
+  }
+  .b-seal span { color: #FAF9F6; font-size: 11px; letter-spacing: 1px; }
+
+  /* ── 打印：A6 双面 ── */
+  @media print {
+    @page { size: A6 portrait; margin: 0; }
+    body { background: #fff; padding: 0; }
+    .page { gap: 0; }
+    .card-label { display: none; }
+    .card { box-shadow: none; border-radius: 0; page-break-after: always; }
+    .card-front, .card-back { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+  @media (max-width: 600px) {
+    .card { width: 92mm; height: 130mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════ 正面 · 封面 ══════ -->
+  <div class="card-wrap">
+    <div class="card-label">正面 · 封面（形象处方签）</div>
+    <div class="card card-front">
+      <svg viewBox="0 0 64 64" width="54" height="54" class="c-logo">
+        <rect width="64" height="64" fill="#5A5A6E" rx="9"/>
+        <path d="M10,52 C18,52 24,36 26,22 C30,38 32,48 35,52 Z" fill="#FAF9F6"/>
+        <path d="M35,52 C37,44 39,34 42,28 C45,38 48,48 54,52 Z" fill="#FAF9F6"/>
+      </svg>
+      <div class="c-brand">远山如</div>
+      <div class="c-line"></div>
+      <div class="c-tagline">形象决策卡</div>
+      <div class="c-rule"></div>
+
+      <div class="c-owner">
+        <div class="who">林女士</div>
+        <div class="type">冬季型 · 冷 · 深</div>
+        <div class="pal">
+          <span class="sw" style="background:#5B8FA8"></span> 天青
+          <span class="sw" style="background:#F5F0E8"></span> 牙白
+          <span class="sw" style="background:#8B9BAF"></span> 灰蓝
+        </div>
+      </div>
+
+      <div class="c-seal-wrap">
+        <div class="c-seal"><span>得体</span></div>
+        <div class="c-serial">C-0001 · 2026-10</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ 背面 · 四律 ══════ -->
+  <div class="card-wrap">
+    <div class="card-label">背面 · 买衣四律</div>
+    <div class="card card-back">
+      <div class="b-head">
+        <div class="b-brand">远山如</div>
+        <div class="b-no">口袋决策卡 · C-0001</div>
+      </div>
+      <div class="b-owner">林女士 · 冬季型 · 天青 / 牙白 / 灰蓝</div>
+      <div class="b-rule"></div>
+
+      <div class="law">
+        <div class="law-t"><span class="no">①</span>3 色衣橱配色盘</div>
+        <div class="law-d">衣柜只留这三色：天青、牙白、灰蓝。任意两件搭在一起都是对的，不用再为"怎么配"犯难。</div>
+        <div class="b-pal">
+          <div class="chip" style="background:#5B8FA8"><b style="color:#fff">天青</b><i style="color:rgba(255,255,255,.8)">主色</i></div>
+          <div class="chip" style="background:#F5F0E8"><b>牙白</b><i>过渡</i></div>
+          <div class="chip" style="background:#8B9BAF"><b style="color:#fff">灰蓝</b><i style="color:rgba(255,255,255,.8)">点缀</i></div>
+        </div>
+      </div>
+
+      <div class="law">
+        <div class="law-t"><span class="no">②</span>版型 2 条红线</div>
+        <div class="law-d">买外套先看肩线——落肩不买；衣长不过胯——短款让比例更好。守住这两条，版型不会错。</div>
+      </div>
+
+      <div class="law">
+        <div class="law-t"><span class="no">③</span>购物闸门</div>
+        <div class="law-d">不"疯狂地爱"就不买。犹豫超过 3 天 = 不够爱 = 会压箱底。只在真正衬自己的时候下单。</div>
+      </div>
+
+      <div class="law">
+        <div class="law-t"><span class="no">④</span>场景速配</div>
+        <div class="law-d">通勤、见客、周末：三套基础搭配提前定好。出门前不再对着衣柜发呆，今天穿什么 30 秒有答案。</div>
+      </div>
+
+      <div class="b-foot">
+        <div class="b-ysr">远山如 · 让买衣不再靠猜</div>
+        <div class="b-seal"><span>得体</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
