@@ -3,197 +3,211 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>远山如 · 口袋决策卡（模板）</title>
+<title>远山如 · 口袋决策卡（详细版 · A5 对折）</title>
 <style>
-  /* 远山如 · 口袋决策卡 v1.0（2026-10-12）
-     设计读：形象处方签——350g 特种纸质感、宋韵克制、Logo 双山成领 + 印章得体 */
+  /* 远山如 · 口袋决策卡 v2.0（2026-10-12）· A5 对折四页
+     数据源：C-0001 林女士 confirmed 档案（SKILL §13.2 全量落地，压缩投影不新判定） */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: "Noto Serif SC", "PingFang SC", serif;
     background: #e8e4da; color: #1d232b; padding: 32px 16px;
     -webkit-font-smoothing: antialiased;
   }
-  .page {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 28px;
-    max-width: 1080px; margin: 0 auto;
-  }
-  .card-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-  .card-label { font-size: 13px; color: #7a8494; letter-spacing: .08em; }
+  .page { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; max-width: 1200px; margin: 0 auto; }
+  .sheet-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .sheet-label { font-size: 13px; color: #7a8494; letter-spacing: .08em; }
 
-  /* ── 卡片本体：A6 竖版 105×148mm ── */
-  .card {
-    width: 105mm; height: 148mm;
+  /* ── A5 展开对折页（148×210mm 横向，两栏）── */
+  .sheet {
+    width: 297mm; height: 148mm;
     background: #FAF9F6; border-radius: 10px; overflow: hidden;
     box-shadow: 0 8px 30px rgba(36,52,71,.18);
-    position: relative; padding: 0;
-    display: flex; flex-direction: column;
+    display: grid; grid-template-columns: 1fr 1fr; position: relative;
   }
-  /* 纸张纹理（微噪点） */
-  .card::before {
-    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  .sheet::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5; z-index: 5;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   }
+  .panel { padding: 18px 20px; position: relative; overflow: hidden; }
+  .panel + .panel { border-left: 1px dashed #dcd7cd; }
 
-  /* ══════ 正面：封面 ══════ */
-  .card-front {
-    background: linear-gradient(160deg, #FAF9F6 60%, #F2EFE9);
-    padding: 22px 20px; flex: 1; display: flex; flex-direction: column; align-items: center;
-  }
-  .c-logo { margin-top: 8px; }
-  .c-brand { font-size: 24px; font-weight: 700; letter-spacing: 6px; color: #5A5A6E; margin-top: 10px; }
-  .c-line { width: 34px; height: 1.5px; background: #B5443A; margin: 12px auto 0; }
-  .c-tagline { font-size: 12px; color: #7a8494; letter-spacing: 2px; margin-top: 10px; }
-  .c-rule { flex: 1; min-height: 26px; }
+  /* ══════ 面1 封面 ══════ */
+  .front { display: flex; flex-direction: column; align-items: center; background: linear-gradient(160deg, #FAF9F6 60%, #F2EFE9); }
+  .c-logo { margin-top: 2px; }
+  .c-brand { font-size: 30px; font-weight: 700; letter-spacing: 8px; color: #5A5A6E; margin-top: 8px; }
+  .c-line { width: 40px; height: 1.5px; background: #B5443A; margin: 12px auto 0; }
+  .c-tagline { font-size: 13px; color: #7a8494; letter-spacing: 3px; margin-top: 8px; }
+  .c-rule { flex: 1; min-height: 20px; }
+  .c-owner { text-align: center; }
+  .c-owner .who { font-size: 30px; font-weight: 700; color: #1d232b; letter-spacing: 2px; }
+  .c-owner .type { display: inline-block; margin-top: 8px; padding: 5px 16px; background: #5A5A6E; color: #FAF9F6; font-size: 13px; letter-spacing: 3px; border-radius: 999px; }
+  .c-owner .roles { font-size: 12px; color: #4a5462; margin-top: 10px; letter-spacing: 1px; }
+  .c-owner .roles b { color: #5A5A6E; }
+  .c-seal-wrap { margin-top: auto; padding-bottom: 2px; text-align: center; }
+  .c-seal { width: 52px; height: 52px; background: #B5443A; border-radius: 5px; display: grid; place-items: center; margin: 0 auto; }
+  .c-seal span { color: #FAF9F6; font-size: 19px; letter-spacing: 2px; font-weight: 700; }
+  .c-serial { font-size: 10px; color: #a0a6b0; letter-spacing: 1px; margin-top: 6px; }
 
-  .c-owner { margin-top: 18px; text-align: center; }
-  .c-owner .who { font-size: 26px; font-weight: 700; color: #1d232b; letter-spacing: 1px; }
-  .c-owner .type {
-    display: inline-block; margin-top: 8px; padding: 5px 14px;
-    background: #5A5A6E; color: #FAF9F6; font-size: 12px; letter-spacing: 3px; border-radius: 999px;
-  }
-  .c-owner .pal {
-    font-size: 12px; color: #5A5A6E; margin-top: 10px; letter-spacing: 1px;
-  }
-  .c-owner .pal .sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin: 0 2px -2px; border: 1px solid #dcd7cd; }
+  /* ══════ 通用小节 ══════ */
+  .sec { margin-bottom: 12px; }
+  .sec-t { font-size: 13.5px; font-weight: 700; color: #1d232b; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+  .sec-t .no { width: 20px; height: 20px; border-radius: 50%; background: #5A5A6E; color: #FAF9F6; font-size: 11px; display: grid; place-items: center; flex: none; }
+  .sec-t .en { font-size: 10px; color: #a0a6b0; letter-spacing: 2px; font-weight: 400; }
+  .sec-d { font-size: 12px; color: #4a5462; margin-top: 5px; line-height: 1.65; }
+  .sec-d b { color: #1d232b; }
+  .sec-d .hl { color: #B5443A; font-weight: 700; }
+  .muted { color: #7a8494; font-size: 11px; }
 
-  .c-seal-wrap { margin-top: auto; padding-bottom: 4px; }
-  .c-seal {
-    width: 46px; height: 46px; background: #B5443A; border-radius: 5px;
-    display: grid; place-items: center;
-  }
-  .c-seal span { color: #FAF9F6; font-size: 17px; letter-spacing: 2px; font-weight: 700; }
-  .c-serial { font-size: 9.5px; color: #a0a6b0; letter-spacing: 1px; margin-top: 6px; }
+  /* 面2 配色盘 */
+  .pal-row { display: flex; gap: 7px; margin-top: 8px; }
+  .chip { flex: 1; height: 40px; border-radius: 7px; border: 1px solid #dcd7cd; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; }
+  .chip b { font-size: 11px; }
+  .chip i { font-size: 9px; font-style: normal; }
+  .pal-note { font-size: 10.5px; color: #7a8494; margin-top: 6px; line-height: 1.5; }
 
-  /* ══════ 背面：四律 ══════ */
-  .card-back { background: #FAF9F6; padding: 24px 22px; flex: 1; }
-  .b-head { display: flex; align-items: baseline; justify-content: space-between; }
-  .b-brand { font-size: 15px; font-weight: 700; color: #5A5A6E; letter-spacing: 3px; }
-  .b-no { font-size: 10px; color: #a0a6b0; letter-spacing: 1px; }
-  .b-owner { font-size: 12px; color: #7a8494; margin-top: 3px; letter-spacing: 1px; }
-  .b-rule { width: 100%; height: 1px; background: #dcd7cd; margin: 12px 0 16px; }
+  /* 面3 闸门 */
+  .gate-box { background: #F2EFE9; border-radius: 8px; padding: 10px 12px; margin-top: 8px; }
+  .gate-box .q { font-size: 13px; font-weight: 700; color: #1d232b; line-height: 1.5; }
+  .gate-box .f { font-size: 12px; color: #B5443A; font-weight: 700; margin-top: 6px; }
+  .gate-box .e { font-size: 11px; color: #4a5462; margin-top: 4px; }
 
-  .law { margin-bottom: 15px; }
-  .law-t {
-    font-size: 12px; font-weight: 700; color: #1d232b; letter-spacing: 1px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .law-t .no {
-    width: 18px; height: 18px; border-radius: 50%; background: #5A5A6E; color: #FAF9F6;
-    font-size: 11px; display: grid; place-items: center; flex: none;
-  }
-  .law-d { font-size: 11.5px; color: #4a5462; margin-top: 4px; line-height: 1.6; }
+  /* 面3 场景速配 */
+  .scene { background: #F2EFE9; border-radius: 8px; padding: 9px 12px; margin-top: 6px; }
+  .scene .s-t { font-size: 12px; font-weight: 700; color: #5A5A6E; }
+  .scene .s-d { font-size: 11.5px; color: #4a5462; margin-top: 2px; line-height: 1.55; }
 
-  .b-pal { margin-top: 4px; display: flex; gap: 8px; }
-  .b-pal .chip {
-    flex: 1; height: 34px; border-radius: 6px; border: 1px solid #dcd7cd;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-  }
-  .b-pal .chip b { font-size: 11px; color: #1d232b; }
-  .b-pal .chip i { font-size: 9px; color: #7a8494; font-style: normal; }
-  .b-foot {
-    margin-top: auto; padding-top: 12px; border-top: 1px solid #dcd7cd;
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  }
-  .b-meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-  .b-ysr { font-size: 10.5px; color: #5A5A6E; letter-spacing: 2px; white-space: nowrap; }
-  .b-wx { font-size: 11px; color: #4a5462; letter-spacing: .5px; white-space: nowrap; }
+  /* 面4 复查 + 微信 */
+  .review-row { display: flex; gap: 6px; margin-top: 6px; }
+  .review-row .cell { flex: 1; background: #F2EFE9; border-radius: 6px; padding: 7px 8px; text-align: center; }
+  .review-row .cell b { display: block; font-size: 11px; color: #1d232b; }
+  .review-row .cell i { display: block; font-size: 9.5px; color: #7a8494; font-style: normal; margin-top: 2px; }
+  .b-foot { margin-top: auto; padding-top: 10px; border-top: 1px solid #dcd7cd; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .b-meta { display: flex; flex-direction: column; gap: 4px; }
+  .b-ysr { font-size: 11.5px; color: #5A5A6E; letter-spacing: 2px; }
+  .b-wx { font-size: 12px; color: #4a5462; letter-spacing: .5px; }
   .b-wx b { color: #5A5A6E; font-weight: 700; letter-spacing: 1px; }
-  .b-seal {
-    width: 32px; height: 32px; background: #B5443A; border-radius: 4px;
-    display: grid; place-items: center; flex: none;
-  }
+  .b-seal { width: 34px; height: 34px; background: #B5443A; border-radius: 4px; display: grid; place-items: center; flex: none; }
   .b-seal span { color: #FAF9F6; font-size: 12px; letter-spacing: 1px; }
 
-  /* ── 打印：A6 双面 ── */
+  /* ── 打印：A5 对折双面 ── */
   @media print {
-    @page { size: A6 portrait; margin: 0; }
+    @page { size: A5 landscape; margin: 0; }
     body { background: #fff; padding: 0; }
     .page { gap: 0; }
-    .card-label { display: none; }
-    .card { box-shadow: none; border-radius: 0; page-break-after: always; }
-    .card-front, .card-back { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .sheet-label { display: none; }
+    .sheet { box-shadow: none; border-radius: 0; page-break-after: always; width: 100%; height: auto; min-height: 148mm; }
+    .panel, .panel + .panel { border-left: none; }
+    .panel, .sheet, .sheet::before { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   }
-  @media (max-width: 600px) {
-    .card { width: 92mm; height: 130mm; }
+  @media (max-width: 640px) {
+    .sheet { width: 100%; height: auto; grid-template-columns: 1fr; }
+    .panel + .panel { border-left: none; border-top: 1px dashed #dcd7cd; }
   }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- ══════ 正面 · 封面 ══════ -->
-  <div class="card-wrap">
-    <div class="card-label">正面 · 封面（形象处方签）</div>
-    <div class="card card-front">
-      <svg viewBox="0 0 64 64" width="54" height="54" class="c-logo">
-        <rect width="64" height="64" fill="#5A5A6E" rx="9"/>
-        <path d="M10,52 C18,52 24,36 26,22 C30,38 32,48 35,52 Z" fill="#FAF9F6"/>
-        <path d="M35,52 C37,44 39,34 42,28 C45,38 48,48 54,52 Z" fill="#FAF9F6"/>
-      </svg>
-      <div class="c-brand">远山如</div>
-      <div class="c-line"></div>
-      <div class="c-tagline">形象决策卡</div>
-      <div class="c-rule"></div>
-
-      <div class="c-owner">
-        <div class="who">林女士</div>
-        <div class="type">冬季型 · 冷 · 深</div>
-        <div class="pal">
-          <span class="sw" style="background:#5B8FA8"></span> 天青
-          <span class="sw" style="background:#F5F0E8"></span> 牙白
-          <span class="sw" style="background:#8B9BAF"></span> 灰蓝
+  <!-- ══════ 正面（展开）：面1 封面 + 面2 配色盘&版型 ══════ -->
+  <div class="sheet-wrap">
+    <div class="sheet-label">正面 · 封面 + 配色盘/版型</div>
+    <div class="sheet">
+      <!-- 面1 封面 -->
+      <div class="panel front">
+        <svg viewBox="0 0 64 64" width="60" height="60" class="c-logo">
+          <rect width="64" height="64" fill="#5A5A6E" rx="9"/>
+          <path d="M10,52 C18,52 24,36 26,22 C30,38 32,48 35,52 Z" fill="#FAF9F6"/>
+          <path d="M35,52 C37,44 39,34 42,28 C45,38 48,48 54,52 Z" fill="#FAF9F6"/>
+        </svg>
+        <div class="c-brand">远山如</div>
+        <div class="c-line"></div>
+        <div class="c-tagline">形象决策卡</div>
+        <div class="c-rule"></div>
+        <div class="c-owner">
+          <div class="who">林女士</div>
+          <div class="type">冬季型 · 冷 · 深</div>
+          <div class="roles"><b>冷色+深色</b> 6型 · 柔和曲线型 · 优雅</div>
+        </div>
+        <div class="c-seal-wrap">
+          <div class="c-seal"><span>得体</span></div>
+          <div class="c-serial">C-0001 · DX-20261010-001 · 2026-10</div>
         </div>
       </div>
 
-      <div class="c-seal-wrap">
-        <div class="c-seal"><span>得体</span></div>
-        <div class="c-serial">C-0001 · 2026-10</div>
+      <!-- 面2 配色盘 + 版型红线 -->
+      <div class="panel">
+        <div class="sec">
+          <div class="sec-t"><span class="no">①</span>3 色衣橱配色盘 <span class="en">任意两件都是对的</span></div>
+          <div class="pal-row">
+            <div class="chip" style="background:#1D232B"><b style="color:#fff">纯黑</b><i style="color:rgba(255,255,255,.75)">主色</i></div>
+            <div class="chip" style="background:#33475B"><b style="color:#fff">海军蓝</b><i style="color:rgba(255,255,255,.75)">主色</i></div>
+            <div class="chip" style="background:#8B9BAF"><b style="color:#fff">灰蓝</b><i style="color:rgba(255,255,255,.75)">中性</i></div>
+            <div class="chip" style="background:#5B8FA8"><b style="color:#fff">天青</b><i style="color:rgba(255,255,255,.75)">点缀 ≤10%</i></div>
+          </div>
+          <div class="sec-d" style="margin-top:6px;">
+            <b>主色</b>（冬季型·深冷鲜明）：纯黑 / 海军蓝 / 深梅子<br>
+            <b>中性色</b>：灰褐 / 海军蓝 / 灰 / 各种白<br>
+            <b>点缀</b>：天青 · 高饱和只一处，≤10%
+          </div>
+          <div class="pal-note">衣柜只留这三档，任意两件搭在一起都是对的，不用再为"怎么配"犯难。</div>
+        </div>
+        <div class="sec">
+          <div class="sec-t"><span class="no">②</span>版型 2 红线</div>
+          <div class="sec-d">
+            <b>红线 1 · 买外套先看收腰与摆量</b>：你是<b>柔和曲线型</b>，选收腰+微摆，<span class="hl">避开 H 形直筒</span>；圆肩/溜肩加垫肩做结构支撑。<br>
+            <b>红线 2 · 遮胯、显腿长</b>：梨形臀胯圆润，选高腰+长度过胯，视觉重心上移。
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ══════ 背面 · 四律 ══════ -->
-  <div class="card-wrap">
-    <div class="card-label">背面 · 买衣四律</div>
-    <div class="card card-back">
-      <div class="b-head">
-        <div class="b-brand">远山如</div>
-        <div class="b-no">口袋决策卡 · C-0001</div>
-      </div>
-      <div class="b-owner">林女士 · 冬季型 · 天青 / 牙白 / 灰蓝</div>
-      <div class="b-rule"></div>
-
-      <div class="law">
-        <div class="law-t"><span class="no">①</span>3 色衣橱配色盘</div>
-        <div class="law-d">衣柜只留这三色：天青、牙白、灰蓝。任意两件搭在一起都是对的，不用再为"怎么配"犯难。</div>
-        <div class="b-pal">
-          <div class="chip" style="background:#5B8FA8"><b style="color:#fff">天青</b><i style="color:rgba(255,255,255,.8)">主色</i></div>
-          <div class="chip" style="background:#F5F0E8"><b>牙白</b><i>过渡</i></div>
-          <div class="chip" style="background:#8B9BAF"><b style="color:#fff">灰蓝</b><i style="color:rgba(255,255,255,.8)">点缀</i></div>
+  <!-- ══════ 背面（展开）：面3 闸门&速配 + 面4 复查&微信 ══════ -->
+  <div class="sheet-wrap">
+    <div class="sheet-label">背面 · 闸门/场景速配 + 复查/微信</div>
+    <div class="sheet">
+      <!-- 面3 购物闸门 + 场景速配 -->
+      <div class="panel">
+        <div class="sec">
+          <div class="sec-t"><span class="no">③</span>购物闸门 <span class="en">不疯狂地爱就不买</span></div>
+          <div class="gate-box">
+            <div class="q">除非你疯狂地爱它、极度需要它，否则就不要买它。</div>
+            <div class="f">穿着成本 = 价格 ÷ 预期穿着次数</div>
+            <div class="e">例：¥800 大衣穿 80 次 = 每次 ¥10；¥300 上衣穿 3 次 = 每次 ¥100。犹豫超 3 天 = 不够爱 = 会压箱底。</div>
+          </div>
+        </div>
+        <div class="sec">
+          <div class="sec-t"><span class="no">④</span>场景速配 <span class="en">30 秒对照</span></div>
+          <div class="scene">
+            <div class="s-t">职场通勤（优雅策略）</div>
+            <div class="s-d">结构感肩线西装 + 直筒高腰裤，配饰中等量感；配色限安全色区：纯黑/海军蓝/深梅子。</div>
+          </div>
+          <div class="scene">
+            <div class="s-t">日常休闲（自然策略）</div>
+            <div class="s-d">垂感针织/直筒裤 + 基础衬衫，不费力；点缀色 ≤1 件（天青），不破色区。</div>
+          </div>
         </div>
       </div>
 
-      <div class="law">
-        <div class="law-t"><span class="no">②</span>版型 2 条红线</div>
-        <div class="law-d">买外套先看肩线——落肩不买；衣长不过胯——短款让比例更好。守住这两条，版型不会错。</div>
-      </div>
-
-      <div class="law">
-        <div class="law-t"><span class="no">③</span>购物闸门</div>
-        <div class="law-d">不"疯狂地爱"就不买。犹豫超过 3 天 = 不够爱 = 会压箱底。只在真正衬自己的时候下单。</div>
-      </div>
-
-      <div class="law">
-        <div class="law-t"><span class="no">④</span>场景速配</div>
-        <div class="law-d">通勤、见客、周末：三套基础搭配提前定好。出门前不再对着衣柜发呆，今天穿什么 30 秒有答案。</div>
-      </div>
-
-      <div class="b-foot">
-        <div class="b-meta">
-          <div class="b-ysr">远山如 · 让买衣不再靠猜</div>
-          <div class="b-wx">复诊 / 换季 加微信 <b>mav7276</b></div>
+      <!-- 面4 半年复查区 + 微信 -->
+      <div class="panel" style="display:flex;flex-direction:column;">
+        <div class="sec">
+          <div class="sec-t"><span class="no">附</span>半年复查区 <span class="en">生活状态变化时</span></div>
+          <div class="sec-d" style="margin-top:2px;">每半年对照：<b>一周时间分配 vs 衣橱单品比例</b>，找失衡项；失衡先补缺口，不靠"再买一件"解决。</div>
+          <div class="review-row">
+            <div class="cell"><b>常场合</b><i>商务社交 6 成</i></div>
+            <div class="cell"><b>衣橱主类</b><i>外套+裤装为主</i></div>
+            <div class="cell"><b>缺口先补</b><i>见 wardrobe_plan</i></div>
+          </div>
+          <div class="muted" style="margin-top:6px;">出卡依据：DX-20261010-001 · 色季冬季型 · 6型冷色+深色 · 柔和曲线型 · 普通骨架 · 优雅 · 商务侧重（数据源唯一，压缩投影不新判定）</div>
         </div>
-        <div class="b-seal"><span>得体</span></div>
+        <div class="b-foot">
+          <div class="b-meta">
+            <div class="b-ysr">远山如 · 让买衣不再靠猜</div>
+            <div class="b-wx">复诊 / 换季 加微信 <b>mav7276</b></div>
+          </div>
+          <div class="b-seal"><span>得体</span></div>
+        </div>
       </div>
     </div>
   </div>
