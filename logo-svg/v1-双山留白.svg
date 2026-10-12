@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <!-- v1: 双山并排，中间山谷=衣领V，底部开放。山体实色块 -->
+  <rect width="400" height="300" fill="#FAF9F6"/>
+  <!-- 左山：高而缓 -->
+  <path d="M20,270 C70,270 110,200 140,120 C155,170 170,230 190,270 Z" fill="#5A5A6E"/>
+  <!-- 右山：低而挺 -->
+  <path d="M210,270 C235,270 260,210 280,170 C300,220 315,250 380,270 Z" fill="#5A5A6E"/>
+  <!-- 印章点：右下，暗朱 -->
+  <rect x="330" y="30" width="40" height="40" rx="4" fill="#B5443A"/>
+  <text x="350" y="56" font-family="serif" font-size="20" fill="#FAF9F6" text-anchor="middle">得体</text>
+</svg>

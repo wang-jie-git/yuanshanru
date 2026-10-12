@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Micro-Icon（≤16px favicon / 60px 桌面图标）：去印章，交点加粗保可读 -->
+  <rect width="64" height="64" fill="#FAF9F6"/>
+  <path d="M6,60 C18,60 28,40 32,22 C36,40 44,58 58,60" fill="none"
+        stroke="#5A5A6E" stroke-width="7" stroke-linecap="round"/>
+  <!-- 中央交点（山谷底）加粗为节点 -->
+  <circle cx="32" cy="48" r="4.5" fill="#5A5A6E"/>
+</svg>

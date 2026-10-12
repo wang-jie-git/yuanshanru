@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" width="400" height="160">
+  <!-- 字标「远山如」（思源宋体类，字距微松） -->
+  <rect width="400" height="160" fill="#FAF9F6"/>
+  <text x="200" y="105" font-family="'Noto Serif SC','Source Han Serif SC',serif"
+        font-size="92" font-weight="700" fill="#5A5A6E" text-anchor="middle" letter-spacing="14">远山如</text>
+  <text x="200" y="138" font-family="'Cormorant Garamond','Times New Roman',serif"
+        font-size="20" fill="#7a8494" text-anchor="middle" letter-spacing="9">Y U A N   S H A N   R U</text>
+</svg>

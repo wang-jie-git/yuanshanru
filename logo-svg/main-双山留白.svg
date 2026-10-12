@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <!-- 远山如 · 主标 v1「双山成领」（2026-10-12 定稿）
+       左山高缓=人/骨相  右山低挺=衣/版型  山谷=V形衣领  底部开放=计白当黑 -->
+  <rect width="400" height="300" fill="#FAF9F6"/>
+  <g id="mark">
+    <!-- 左山：高而缓（起点左下，山顶圆润，右坡形成山谷） -->
+    <path d="M28,272 C84,272 132,196 150,112 C166,178 178,236 200,272 Z" fill="#5A5A6E"/>
+    <!-- 右山：低而挺（左坡挺立成谷，右坡缓落） -->
+    <path d="M200,272 C216,244 236,206 256,156 C278,216 300,252 372,272 Z" fill="#5A5A6E"/>
+  </g>
+  <!-- 印章「得体」：右下压角，暗朱 -->
+  <g id="seal">
+    <rect x="318" y="24" width="46" height="46" rx="5" fill="#B5443A"/>
+    <text x="341" y="54" font-family="'Noto Serif SC',serif" font-size="24" font-weight="700"
+          fill="#FAF9F6" text-anchor="middle" letter-spacing="2">得体</text>
+  </g>
+</svg>

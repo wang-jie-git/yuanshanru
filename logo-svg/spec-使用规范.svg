@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300">
+  <!-- 使用规范板：安全边距 / 最小尺寸 / 禁用 -->
+  <rect width="800" height="300" fill="#FAF9F6"/>
+  <text x="30" y="40" font-family="'Noto Serif SC',serif" font-size="22" font-weight="700" fill="#243447">使用规范</text>
+  <!-- 安全边距：山形四周保留 1 倍山高 -->
+  <rect x="40" y="70" width="200" height="180" fill="#F2EFE9" stroke="#dcd7cd" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <path d="M56,226 C94,226 124,176 138,124 C150,178 158,208 170,226 Z" fill="#5A5A6E"/>
+  <path d="M170,226 C182,210 196,188 210,160 C224,196 240,216 260,226 Z" fill="#5A5A6E"/>
+  <text x="140" y="240" font-family="sans-serif" font-size="13" fill="#7a8494" text-anchor="middle">安全边距 ≥ 1×山高</text>
+  <!-- 最小尺寸 -->
+  <rect x="310" y="70" width="60" height="54" fill="#5A5A6E" rx="8"/>
+  <path d="M318,112 C328,112 340,100 345,88 C350,100 358,110 368,112" fill="none" stroke="#FAF9F6" stroke-width="5" stroke-linecap="round"/>
+  <text x="340" y="160" font-family="sans-serif" font-size="13" fill="#7a8494" text-anchor="middle">最小 16px</text>
+  <text x="340" y="176" font-family="sans-serif" font-size="12" fill="#7a8494" text-anchor="middle">（去印章版）</text>
+  <!-- 禁用：拉伸/加阴影/加渐变 -->
+  <g transform="translate(460,60)">
+    <path d="M10,170 C40,170 60,120 70,80 C80,120 90,150 100,170" fill="none" stroke="#B5443A" stroke-width="5"/>
+    <text x="80" y="210" font-family="sans-serif" font-size="13" fill="#B5443A" text-anchor="middle">✗ 勿变形</text>
+  </g>
+  <g transform="translate(600,60)">
+    <path d="M10,170 C40,170 60,120 70,80 C80,120 90,150 100,170" fill="none" stroke="#B5443A" stroke-width="5" transform="scale(1.4,0.8) translate(-25,30)"/>
+    <text x="80" y="210" font-family="sans-serif" font-size="13" fill="#B5443A" text-anchor="middle">✗ 勿拉伸</text>
+  </g>
+  <text x="140" y="262" font-family="sans-serif" font-size="13" fill="#7a8494" text-anchor="middle"></text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <!-- v2: 线条轮廓版——两山用描边线，中间留白，更适合织唛/雕刻 -->
+  <rect width="400" height="300" fill="#FAF9F6"/>
+  <!-- 左山轮廓（高缓） -->
+  <path d="M30,265 C90,265 130,190 155,105 C175,185 185,235 200,265" fill="none" stroke="#5A5A6E" stroke-width="6" stroke-linecap="round"/>
+  <!-- 右山轮廓（低挺） -->
+  <path d="M200,265 C220,235 235,200 255,160 C275,215 295,245 370,265" fill="none" stroke="#5A5A6E" stroke-width="6" stroke-linecap="round"/>
+  <!-- 印章 -->
+  <rect x="322" y="26" width="44" height="44" rx="4" fill="none" stroke="#B5443A" stroke-width="4"/>
+  <text x="344" y="55" font-family="serif" font-size="22" fill="#B5443A" text-anchor="middle">得体</text>
+</svg>
