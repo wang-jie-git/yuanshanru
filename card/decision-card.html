@@ -96,8 +96,8 @@
     .page { gap: 0; }
     .sheet-label { display: none; }
     .sheet { box-shadow: none; border-radius: 0; page-break-after: always; width: 100%; height: auto; min-height: 148mm; }
-    .panel, .panel + .panel { border-left: none; }
-    .panel, .sheet, .sheet::before { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .sheet::before { display: none; }
+    .panel, .sheet { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   }
   @media (max-width: 640px) {
     .sheet { width: 100%; height: auto; grid-template-columns: 1fr; }
