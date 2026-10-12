@@ -90,13 +90,19 @@
   }
   .b-pal .chip b { font-size: 11px; color: #1d232b; }
   .b-pal .chip i { font-size: 9px; color: #7a8494; font-style: normal; }
-  .b-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
-  .b-ysr { font-size: 11px; color: #5A5A6E; letter-spacing: 2px; }
+  .b-foot {
+    margin-top: auto; padding-top: 12px; border-top: 1px solid #dcd7cd;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .b-meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .b-ysr { font-size: 10.5px; color: #5A5A6E; letter-spacing: 2px; white-space: nowrap; }
+  .b-wx { font-size: 11px; color: #4a5462; letter-spacing: .5px; white-space: nowrap; }
+  .b-wx b { color: #5A5A6E; font-weight: 700; letter-spacing: 1px; }
   .b-seal {
-    width: 30px; height: 30px; background: #B5443A; border-radius: 4px;
+    width: 32px; height: 32px; background: #B5443A; border-radius: 4px;
     display: grid; place-items: center; flex: none;
   }
-  .b-seal span { color: #FAF9F6; font-size: 11px; letter-spacing: 1px; }
+  .b-seal span { color: #FAF9F6; font-size: 12px; letter-spacing: 1px; }
 
   /* ── 打印：A6 双面 ── */
   @media print {
@@ -183,7 +189,10 @@
       </div>
 
       <div class="b-foot">
-        <div class="b-ysr">远山如 · 让买衣不再靠猜</div>
+        <div class="b-meta">
+          <div class="b-ysr">远山如 · 让买衣不再靠猜</div>
+          <div class="b-wx">复诊 / 换季 加微信 <b>mav7276</b></div>
+        </div>
         <div class="b-seal"><span>得体</span></div>
       </div>
     </div>
