@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>远山如 · 口袋决策卡 · 林女士</title>
+<style>
+  :root { --ink:#2B2B33; --ink-2:#5A5A6E; --ink-3:#8A8A9A; --paper:#FAF9F6; --line:#E2DED6; --accent:#B5443A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#EFEDE8; font-family:"PingFang SC","Microsoft YaHei",sans-serif; color:var(--ink); padding:24px; }
+  .sheet-wrap { max-width:840px; margin:0 auto 20px; }
+  .sheet-label { font-size:12px; color:var(--ink-3); margin-bottom:8px; letter-spacing:.5px; }
+  .sheet { background:var(--paper); border:1px solid var(--line); border-radius:12px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; min-height:480px; }
+  .panel { padding:22px 24px; }
+  .panel + .panel { border-left:1px solid var(--line); }
+  .front { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .c-logo { margin-bottom:10px; }
+  .c-brand { font-size:26px; font-weight:700; letter-spacing:6px; }
+  .c-line { width:36px; height:2px; background:var(--accent); margin:12px auto; }
+  .c-tagline { font-size:14px; color:var(--ink-2); letter-spacing:3px; }
+  .c-rule { width:80%; border-top:1px solid var(--line); margin:18px auto 14px; }
+  .c-owner .who { font-size:20px; font-weight:600; }
+  .c-owner .type { font-size:12px; color:var(--accent); margin:4px 0; }
+  .c-owner .roles { font-size:11.5px; color:var(--ink-2); line-height:1.7; }
+  .c-seal-wrap { margin-top:22px; }
+  .c-seal { width:54px; height:54px; border:2px solid var(--accent); border-radius:50%; color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; margin:0 auto; font-family:serif; }
+  .c-serial { font-size:10px; color:var(--ink-3); margin-top:10px; }
+  .sec { margin-bottom:16px; }
+  .sec-t { font-size:14px; font-weight:700; margin-bottom:8px; }
+  .sec-t .no { color:var(--accent); font-weight:700; }
+  .sec-t .en { font-size:10.5px; color:var(--ink-3); font-weight:400; margin-left:6px; }
+  .pal-row { display:flex; gap:8px; margin:8px 0; }
+  .chip { flex:1; border-radius:8px; padding:10px 6px; text-align:center; }
+  .chip b { display:block; font-size:12.5px; }
+  .chip i { display:block; font-size:9.5px; font-style:normal; margin-top:2px; }
+  .sec-d { font-size:12px; line-height:1.75; color:var(--ink); }
+  .sec-d b { color:var(--ink); }
+  .hl { color:var(--accent); font-weight:600; }
+  .pal-note { font-size:11px; color:var(--ink-2); margin-top:6px; }
+  .gate-box { background:#F5F2EC; border:1px solid var(--line); border-radius:8px; padding:12px; }
+  .gate-box .q { font-size:13px; font-weight:600; }
+  .gate-box .f { font-size:11.5px; color:var(--ink-2); margin-top:6px; }
+  .gate-box .e { font-size:10.5px; color:var(--ink-3); margin-top:4px; }
+  .scene { background:#F8F6F2; border-left:3px solid var(--accent); padding:8px 12px; margin-bottom:8px; border-radius:0 6px 6px 0; }
+  .s-t { font-size:12px; font-weight:600; }
+  .s-d { font-size:11px; color:var(--ink-2); margin-top:3px; line-height:1.6; }
+  .muted { font-size:10px; color:var(--ink-3); line-height:1.6; }
+  .review-row { display:flex; gap:8px; margin-top:8px; }
+  .cell { flex:1; background:#F8F6F2; border:1px solid var(--line); border-radius:8px; padding:8px; text-align:center; }
+  .cell b { display:block; font-size:11px; }
+  .cell i { display:block; font-size:10.5px; color:var(--ink-2); font-style:normal; margin-top:2px; }
+  .b-foot { margin-top:auto; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:12px; }
+  .b-ysr { font-size:11px; color:var(--ink-2); }
+  .b-wx { font-size:10.5px; color:var(--ink-3); margin-top:2px; }
+  .b-wx b { color:var(--accent); }
+  .b-seal { width:34px; height:34px; border:1.5px solid var(--accent); border-radius:50%; color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:11px; font-family:serif; }
+</style>
+</head>
+<body>
+  <div class="sheet-wrap">
+    <div class="sheet-label">正面 · 封面 + 配色盘/版型</div>
+    <div class="sheet">
+      <div class="panel front">
+        <img src="../logo-svg/远山如logo终版-打印版.png" width="60" height="60" class="c-logo" style="object-fit:contain;">
+        <div class="c-brand">远山如</div>
+        <div class="c-line"></div>
+        <div class="c-tagline">形象决策卡</div>
+        <div class="c-rule"></div>
+        <div class="c-owner">
+          <div class="who">林女士</div>
+          <div class="type">冬季型 · 冷色 · 深色</div>
+          <div class="roles"><b>162cm</b> 普通骨架 · 梨形 · 柔和曲线型<br>冷色 + 深色 6型 · 优雅 · 圆肩/溜肩</div>
+        </div>
+        <div class="c-seal-wrap">
+          <div class="c-seal"><span>得体</span></div>
+          <div class="c-serial">C-0001 · DX-20261010-001 · 2026-10</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="sec">
+          <div class="sec-t"><span class="no">①</span>3 色衣橱配色盘 <span class="en">任意两件都是对的</span></div>
+          <div class="pal-row"><div class='chip' style='background:#1D232B'><b style='color:#fff'>纯黑</b><i style='color:rgba(255,255,255,.75)'>主色</i></div><div class='chip' style='background:#33475B'><b style='color:#fff'>海军蓝</b><i style='color:rgba(255,255,255,.75)'>主色</i></div><div class='chip' style='background:#6B3A4F'><b style='color:#fff'>深梅子</b><i style='color:rgba(255,255,255,.75)'>中性</i></div><div class='chip' style='background:#B5443A'><b style='color:#fff'>正红</b><i style='color:rgba(255,255,255,.75)'>点缀 ≤10%</i></div></div>
+          <div class="sec-d"><b>主色</b>（冬季型安全色区）：纯黑 / 海军蓝<br>
+          <b>中性色</b>：黑 / 深灰 / 海军蓝 / 纯白 / 深梅子<br>
+          <b>点缀</b>：天青 · 高饱和只一处，≤10%</div>
+          <div class="pal-note">衣柜只留这三档，任意两件搭在一起都是对的。</div>
+        </div>
+        <div class="sec">
+          <div class="sec-t"><span class="no">②</span>版型 2 红线</div>
+          <div class="sec-d"><b>红线 1</b>：你是<b>柔和曲线型</b>，选收腰+微摆，<span class='hl'>避开 H 形直筒</span>；圆肩加垫肩做结构支撑。<br><b>红线 2</b>：遮胯、显腿长（选版型/长度时优先满足）。</div>
+        </div>
+        <div class="sec">
+          <div class="sec-t"><span class="no">③</span>场景速配 <span class="en">30 秒对照</span></div>
+          <div class='scene'><div class='s-t'>职场通勤（优雅策略）</div><div class='s-d'>优雅策略：结构感肩线西装 + 直筒高腰裤，配饰中等量感；配色限安全色区：纯黑 / 海军蓝 / 深梅子。</div></div><div class='scene'><div class='s-t'>高端晚宴（优雅策略）</div><div class='s-d'>浪漫/优雅：垂感裙/缎面单品 + 结构外套，配色盘内高饱和点缀；配色限安全色区：纯黑 / 海军蓝 / 深梅子。</div></div><div class='scene'><div class='s-t'>日常休闲（优雅策略）</div><div class='s-d'>自然策略：垂感针织/直筒裤 + 基础衬衫，不费力；点缀色 ≤1 件；配色限安全色区：纯黑 / 海军蓝 / 深梅子。</div></div>
+          <div class='scene'><div class='s-t'>配饰量感（普通骨架）</div><div class='s-d'>柔和几何形、线条不明显——卵形/小方形耳环、细链；避开夸张大件。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-wrap">
+    <div class="sheet-label">背面 · 闸门 + 复查/微信</div>
+    <div class="sheet">
+      <div class="panel">
+        <div class="sec">
+          <div class="sec-t"><span class="no">④</span>购物闸门 <span class="en">不疯狂地爱就不买</span></div>
+          <div class="gate-box">
+            <div class="q">除非你疯狂地爱它、极度需要它，否则就不要买它。</div>
+            <div class="f">穿着成本 = 价格 ÷ 预期穿着次数</div>
+            <div class="e">例：¥800 大衣穿 80 次 = 每次 ¥10；¥300 上衣穿 3 次 = 每次 ¥100。犹豫超 3 天 = 不够爱 = 会压箱底。</div>
+          </div>
+        </div>
+        <div class="sec">
+          <div class="sec-t"><span class="no">⑤</span>半年复查区 <span class="en">生活状态变化时</span></div>
+          <div class="sec-d">每半年对照：<b>一周时间分配 vs 衣橱单品比例</b>，找失衡项；失衡先补缺口。</div>
+          <div class="review-row">
+            <div class="cell"><b>常场合</b><i>职场通勤 为主</i></div>
+            <div class="cell"><b>衣橱主类</b><i>按场合比例配</i></div>
+            <div class="cell"><b>缺口先补</b><i>见 wardrobe_plan</i></div>
+          </div>
+          <div class="muted" style="margin-top:6px;">出卡依据：DX-20261010-001 · 色季冬季型 · 6型 冷色 + 深色 · 柔和曲线型 · 普通骨架 · 优雅</div>
+        </div>
+      </div>
+      <div class="panel" style="display:flex;flex-direction:column;">
+        <div class="sec" style="flex:1;">
+          <div class="sec-t"><span class="no">附</span>本卡怎么用</div>
+          <div class="sec-d">1. 出门前 30 秒对照"场景速配"<br>2. 挑款时对照"配色盘 + 版型红线"<br>3. 下单前过"购物闸门"</div>
+          <div class="muted" style="margin-top:8px;">匹配依据：人衣坐标（柔和曲线型→直线度 · 普通骨架→量感）× 场景正式度掩码 × 气质簇（优雅）</div>
+        </div>
+        <div class="b-foot">
+          <div class="b-meta">
+            <div class="b-ysr">远山如 · 让买衣不再靠猜</div>
+            <div class="b-wx">复诊 / 换季 加微信 <b>mav7276</b></div>
+          </div>
+          <div class="b-seal"><span>得体</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
