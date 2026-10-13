@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
-  <!-- 单色线条版（织唛/激光雕刻/热转印）：去渐变去印章，纯单色描边 -->
-  <rect width="400" height="300" fill="#FFFFFF"/>
-  <path d="M28,272 C84,272 132,196 150,112 C166,178 178,236 200,272" fill="none"
-        stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M200,272 C216,244 236,206 256,156 C278,216 300,252 372,272" fill="none"
-        stroke="#000000" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
