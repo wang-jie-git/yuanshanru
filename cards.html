@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>远山如 · 决策卡案例</title>
+<link rel="icon" type="image/png" href="logo-svg/远山如16x浅底极简版.png">
+<style>
+  :root {
+    --paper: #faf9f6; --paper-2: #f2efe9;
+    --ink: #1d232b; --ink-2: #4a5462; --ink-3: #7a8494;
+    --line: #dcd7cd; --indigo: #243447; --indigo-2: #33465f;
+    --cinnabar: #c23b2a; --cinnabar-hi: #d94a36; --gold: #a9802f;
+    --radius: 14px; --shadow: 0 10px 40px rgba(0,0,0,.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14181e; --paper-2: #1b212a;
+      --ink: #e8e4da; --ink-2: #b6bcc6; --ink-3: #87919f;
+      --line: #2a313b; --shadow: 0 10px 40px rgba(0,0,0,.5);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.85; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  nav { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--paper) 82%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+  .brand-mark { width: 28px; height: 28px; border-radius: 7px; flex: none; display: grid; place-items: center; }
+  .nav-links { display: flex; gap: 4px; margin-left: auto; }
+  .nav-links a { color: var(--ink-2); text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 12px; border-radius: 9px; }
+  .nav-links a:hover { background: var(--paper-2); color: var(--ink); }
+  .nav-cta { margin-left: 8px; flex: none; background: var(--cinnabar); color: #fff !important; font-weight: 600; padding: 8px 16px; border-radius: 999px; text-decoration: none; }
+  .nav-cta:hover { background: var(--cinnabar-hi); }
+
+  header { padding: 56px 0 32px; }
+  .eyebrow { display: inline-block; font-size: 13px; letter-spacing: .08em; color: var(--cinnabar); font-weight: 600; margin-bottom: 14px; }
+  h1 { font-family: "Noto Serif SC", serif; font-size: clamp(30px, 4.4vw, 48px); font-weight: 900; letter-spacing: .01em; }
+  .sub { margin-top: 14px; font-size: 16px; color: var(--ink-2); max-width: 40em; }
+
+  .legend { display: flex; gap: 16px; margin: 22px 0 10px; font-size: 13px; color: var(--ink-3); }
+  .legend .tag { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .dot-real { background: var(--cinnabar); }
+  .dot-sim { background: var(--gold); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 22px; padding: 20px 0 40px; }
+  .card { background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .card-head { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+  .card-name { font-size: 16px; font-weight: 700; }
+  .card-tag { font-size: 11.5px; padding: 2px 10px; border-radius: 999px; font-weight: 600; }
+  .tag-real { background: color-mix(in srgb, var(--cinnabar) 12%, transparent); color: var(--cinnabar); }
+  .tag-sim { background: color-mix(in srgb, var(--gold) 14%, transparent); color: var(--gold); }
+  .card-body { padding: 16px 20px; flex: 1; }
+  .row { display: flex; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+  .row:first-child { border-top: 0; }
+  .lbl { color: var(--ink-3); flex: none; width: 4.2em; }
+  .val { color: var(--ink); font-weight: 600; flex: 1; }
+  .palette { display: flex; gap: 6px; margin-top: 5px; }
+  .swatch { width: 24px; height: 24px; border-radius: 7px; border: 1px solid var(--line); }
+  .card-foot { padding: 14px 20px; border-top: 1px solid var(--line); display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 7px 14px; border-radius: 9px; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid var(--line); color: var(--ink-2); background: var(--paper); }
+  .btn:hover { color: var(--ink); border-color: var(--ink-3); }
+  .btn-main { background: var(--cinnabar); color: #fff !important; border-color: transparent; }
+  .btn-main:hover { background: var(--cinnabar-hi); }
+
+  .note { font-size: 12.5px; color: var(--ink-3); border-left: 3px solid var(--line); padding: 10px 14px; margin: 8px 0 24px; background: var(--paper-2); border-radius: 0 8px 8px 0; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0; text-align: center; font-size: 13px; color: var(--ink-3); }
+  @media (max-width: 780px) { nav .wrap { gap: 12px; } .nav-links a { font-size: 12.5px; padding: 6px 8px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="index.html" style="font-family:'Noto Serif SC',serif;font-weight:700;">
+      <span class="brand-mark" style="background:transparent;display:grid;place-items:center;">
+        <img src="logo-svg/远山如16x浅底极简版.png" width="26" height="26" alt="远山如 Logo" style="display:block;object-fit:contain;">
+      </span>远山如</a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="index.html#cases">案例</a>
+      <a href="cards.html" style="color:var(--ink);font-weight:600;">决策卡</a>
+      <a href="index.html#biz">模式</a>
+      <a href="index.html#faq">问答</a>
+    </div>
+    <a class="nav-cta" href="index.html#contact">给店里试一次免费诊断</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <span class="eyebrow">口袋决策卡 · 30 秒能用</span>
+    <h1>每位顾客一张卡<br>出门 / 买衣 / 下单，都照着它</h1>
+    <p class="sub">建档诊断后自动生成：3 色衣橱配色盘 · 版型红线 · 购物闸门 · 场景速配。店主顾问可直接打开展示，也可打印纸质卡交给顾客。</p>
+    <div class="legend">
+      <span class="tag"><span class="dot dot-real"></span>真实顾客</span>
+      <span class="tag"><span class="dot dot-sim"></span>模拟数据（系统演示）</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="note">
+    模拟卡为系统开发阶段的数据演示（全类型覆盖），用于展示诊断→决策卡的全流程能力；真实卡来自已完成诊断的顾客。卡片由 <b>决策卡渲染器</b> 从档案+诊断自动生成，非人工手写。
+  </div>
+  <div class="grid">
+
+    <!-- C-0001 林女士 真实 -->
+    <div class="card">
+      <div class="card-head"><span class="card-name">林女士 · 品牌设计师</span><span class="card-tag tag-real">真实</span></div>
+      <div class="card-body">
+        <div class="row"><span class="lbl">色季</span><span class="val">冬季型 · 冷 × 深</span></div>
+        <div class="row"><span class="lbl">体型</span><span class="val">梨形 · 柔和曲线型 · 普通骨架</span></div>
+        <div class="row"><span class="lbl">风格</span><span class="val">优雅 × 自然 · 宋式极简</span></div>
+        <div class="row"><span class="lbl">3 色衣橱</span><span class="val">天青 · 牙白 · 灰蓝
+          <div class="palette"><span class="swatch" style="background:#5B8FA8"></span><span class="swatch" style="background:#F5F0E8"></span><span class="swatch" style="background:#8B9BAF"></span></div>
+        </span></div>
+        <div class="row"><span class="lbl">版型红线</span><span class="val">收腰+微摆 · 高腰拉长比例</span></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn btn-main" href="card/C-0001-decision-card.html" target="_blank">打开决策卡</a>
+        <a class="btn" href="card/决策卡-C0001-林女士-v2.3.pdf" target="_blank">打印版 PDF</a>
+      </div>
+    </div>
+
+    <!-- C-0002 陈先生 真实 -->
+    <div class="card">
+      <div class="card-head"><span class="card-name">陈先生 · 商场主理人</span><span class="card-tag tag-real">真实</span></div>
+      <div class="card-body">
+        <div class="row"><span class="lbl">色季</span><span class="val">秋季型 · 暖 × 深</span></div>
+        <div class="row"><span class="lbl">体型</span><span class="val">H形 · 直线型 · 偏大骨架</span></div>
+        <div class="row"><span class="lbl">风格</span><span class="val">自然 × 优雅</span></div>
+        <div class="row"><span class="lbl">中性色</span><span class="val">可可 · 砖红 · 橄榄绿 · 驼
+          <div class="palette"><span class="swatch" style="background:#5C4033"></span><span class="swatch" style="background:#9E3D2F"></span><span class="swatch" style="background:#5B6B3A"></span><span class="swatch" style="background:#B8956A"></span></div>
+        </span></div>
+        <div class="row"><span class="lbl">版型红线</span><span class="val">利落直筒 · 收腰外套 · 配饰克制</span></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn btn-main" href="card/decision-card.html" target="_blank">打开决策卡</a>
+      </div>
+    </div>
+
+    <!-- C-1003 李小姐 模拟 -->
+    <div class="card">
+      <div class="card-head"><span class="card-name">李小姐 · 律所合伙人</span><span class="card-tag tag-sim">模拟</span></div>
+      <div class="card-body">
+        <div class="row"><span class="lbl">色季</span><span class="val">冬季型 · 冷 × 深</span></div>
+        <div class="row"><span class="lbl">体型</span><span class="val">H形 · 直线型 · 大骨架</span></div>
+        <div class="row"><span class="lbl">风格</span><span class="val">优雅 × 自然 · 都市精英</span></div>
+        <div class="row"><span class="lbl">3 色衣橱</span><span class="val">深蓝 · 纯白 · 炭灰
+          <div class="palette"><span class="swatch" style="background:#1B2A4A"></span><span class="swatch" style="background:#F5F5F5"></span><span class="swatch" style="background:#3A3F47"></span></div>
+        </span></div>
+        <div class="row"><span class="lbl">版型红线</span><span class="val">利落直筒/微A · 显气场</span></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn btn-main" href="card/C-1003-decision-card.html" target="_blank">打开决策卡</a>
+        <a class="btn" href="card/C-1003-decision-card.pdf" target="_blank">打印版 PDF</a>
+      </div>
+    </div>
+
+    <!-- C-1001 苏小姐 模拟 -->
+    <div class="card">
+      <div class="card-head"><span class="card-name">苏小姐 · 市场策划</span><span class="card-tag tag-sim">模拟</span></div>
+      <div class="card-body">
+        <div class="row"><span class="lbl">色季</span><span class="val">春季型 · 暖 × 浅</span></div>
+        <div class="row"><span class="lbl">体型</span><span class="val">沙漏X · 曲线型 · 小骨架</span></div>
+        <div class="row"><span class="lbl">风格</span><span class="val">浪漫 × 优雅 · 法式</span></div>
+        <div class="row"><span class="lbl">3 色衣橱</span><span class="val">珊瑚粉 · 象牙白 · 暖米
+          <div class="palette"><span class="swatch" style="background:#F2A9A4"></span><span class="swatch" style="background:#F5F0E8"></span><span class="swatch" style="background:#E5D9C0"></span></div>
+        </span></div>
+        <div class="row"><span class="lbl">版型红线</span><span class="val">收腰+微摆 · 突出腰线</span></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn btn-main" href="card/C-1001-decision-card.html" target="_blank">打开决策卡</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">远山如 · 让买衣不再靠猜 · 微信 mav7276 · 决策卡由判断力引擎自动生成</div>
+</footer>
+
+</body>
+</html>
